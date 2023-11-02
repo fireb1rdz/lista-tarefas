@@ -1,7 +1,11 @@
+body {
+    background-color: black;
+}
+
 .task-column {
     min-height: 80vh;
     border: 1px solid gray;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(185, 185, 185);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -11,7 +15,16 @@
 }
 
 .item {
-    background-color: rgb(255, 255, 144);
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    align-self: center;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-item {
     width: 90%;
     align-self: center;
     border-radius: 30px;
@@ -24,4 +37,12 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
+}
+
+.inputAndDescription {
+    width: 85%;
+}
+
+h1 {
+    color: white
 }
