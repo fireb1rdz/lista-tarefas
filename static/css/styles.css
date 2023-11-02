@@ -25,12 +25,9 @@ body {
 }
 
 .card-item {
-    width: 90%;
+    width: 80%;
     align-self: center;
-    border-radius: 30px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
+    padding: 0px;
 }
 
 .add-task-button {
