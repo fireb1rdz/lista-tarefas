@@ -11,12 +11,18 @@ $(document).ready(() => {
         $button.click(clickHandler)
         return $button
     }
-    const createSucessBoxButton = (sucessClass, type, value, clickHandler) => {
-        $sucess = $(`<button type="${type}" value="${value}"></button>`)
+    const createSucessButton = (sucessClass, type, value, clickHandler) => {
+        $sucess = $(`<button type="${type}" value="${value}"></button>`).addClass(sucessClass)
         $sucess.text("Concluir")
-        $sucess.addClass(sucessClass)
         $sucess.click(clickHandler)
         return $sucess
+    }
+
+    const createInfoButton = (iconClass, buttonClass, type, databstoggle, databstarget, ariaexpanded, ariacontrols) => {
+        const $info = $(`<button type="${type}" data-bs-toggle="${databstoggle}" data-bs-target="#${databstarget}" aria-expanded="${ariaexpanded}" aria-controls="${ariacontrols}"></button>`).addClass(buttonClass)
+        const $iconInfoButton = $("<i></i>").addClass(iconClass)
+        $info.append($iconInfoButton)
+        return $info
     }
     // Função para formatar a data de expiração
     const expireDateFormated = (expireDate) => {
@@ -32,11 +38,13 @@ $(document).ready(() => {
         const $newTask = $("<div></div>").addClass("item")
         const $taskText = $("<span></span>").text(description)
         const $taskExpireDate = $("<span></span>").append(`Data de expiração: ${expireDateFormated(expireDate)}`).addClass("d-flex align-items-center ms-auto")
+        const $newTaskInfo = $(`<div id=${description}></div>`).addClass("collapse card-item")
+        const $infoCard = $("<div></div>").addClass("card card-body").text("teste")
 
         // Variável contendo a informação de click no botão de conclusão
         let clicked = false
         expireDateFormated($expireDateInput.val())
-        const $sucessButton = createSucessBoxButton("btn btn-primary btn-sm", "button", "done", () => {
+        const $sucessButton = createSucessButton("btn btn-primary btn-sm", "button", "done", () => {
                 // Verifica se o botão de Concluir já foi clickado, se não foi, remove a data de expiração e adiciona a data de conclusão
             if (clicked == false) {
                 let today = new Date().toLocaleDateString()
@@ -61,12 +69,15 @@ $(document).ready(() => {
         const $deleteButton = createIconButton("bi bi-x", "btn btn-danger btn-sm", () => {
             $newTask.remove()
         })
+
+        const $infoButton = createInfoButton("bi bi-info-lg", "btn btn-primary btn-sm", "button", "collapse", description, "false", "extraInfo")
         const $buttonsContainer = $("<div></div>").addClass("d-flex column-gap-2")
-        $buttonsContainer.append($editButton, $deleteButton)
+        $buttonsContainer.append($editButton, $deleteButton, $infoButton)
         const $inputAndDescriptionContainer = $("<div></div>").addClass("d-flex hstack gap-3 align-items-center inputAndDescription")
         $inputAndDescriptionContainer.append($sucessButton, $taskText, $taskExpireDate)
+        $newTaskInfo.append($infoCard)
         $newTask.append($inputAndDescriptionContainer, $buttonsContainer)
-        $("#todo").append($newTask)
+        $("#todo").append($newTask, $newTaskInfo)
     }   
 
     // Evento para o envio do formulário
