@@ -94,7 +94,6 @@ $(document).ready(() => {
         } else {
             $form.addClass("was-validated")
         }
-        console.log($descriptionInput.val())
     })
     
 })
