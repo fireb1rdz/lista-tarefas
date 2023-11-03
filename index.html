@@ -23,30 +23,6 @@
         <!-- Coluna de agrupamento de tarefas -->
         <div class="task-column" id="todo">
             <!-- Itens irão aqui -->
-            <div class="item">
-                <div class="d-flex hstack gap-3 align-items-center inputAndDescription">
-                    <button type="button"value="done" class="btn btn-sm btn-success">
-                        <i class="bi bi-check"></i>
-                    </button>
-                    <span>teste</span>
-                    <span class="d-flex align-items-center ms-auto">
-                        Data de conclusão: 02/11/2023
-                    </span>
-                </div>
-                <div class="d-flex column-gap-2">
-                    <button class="btn btn-danger btn-sm">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#extraInfo" aria-expanded="false" aria-controls="extraInfo">
-                        <i class="bi bi-info-lg"></i>
-                      </button>
-                </div>
-            </div>
-            <div class="collapse card-item" id="extraInfo">
-                <div class="card card-body">
-                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                </div>
-            </div>
         </div>
     </div>
     <!-- Button trigger modal -->
@@ -74,7 +50,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="detailedDescription">Descrição detalhada</label>
-                            <textarea type="text" class="form-control" name="detailedDescription" id="detailedDescription"></textarea>
+                            <textarea type="text" class="form-control" name="detailedDescription" id="detailedDescriptionInput"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="expireDateInput" class="form-label">Data de expiração</label>
