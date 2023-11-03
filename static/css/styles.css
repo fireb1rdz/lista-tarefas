@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+h1 {
+    color: white;
+}
+
 .task-column {
     min-height: 80vh;
     border: 1px solid gray;
@@ -40,6 +44,6 @@ body {
     width: 85%;
 }
 
-h1 {
-    color: white
+.modal-title {
+    color: black
 }
