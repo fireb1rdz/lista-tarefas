@@ -36,10 +36,11 @@ $(document).ready(() => {
     
     // Adicionar tarefa na tela
     const addTaskToBoard = (description, expireDate, detailedDescriptionInput) => {
+        const descriptionId = description.replaceAll(" ","")
         const $newTask = $("<div></div>").addClass("item")
         const $taskText = $("<span></span>").text(description)
         const $taskExpireDate = $("<span></span>").append(`Data de expiração: ${expireDateFormated(expireDate)}`).addClass("d-flex align-items-center ms-auto")
-        const $newTaskInfo = $(`<div id=${description}></div>`).addClass("collapse card-item")
+        const $newTaskInfo = $(`<div id=${descriptionId}></div>`).addClass("collapse card-item")
         const $infoCard = $("<div></div>").addClass("card card-body").text(detailedDescriptionInput)
 
         // Variável contendo a informação de click no botão de conclusão
@@ -71,7 +72,7 @@ $(document).ready(() => {
             $newTask.remove()
         })
 
-        const $infoButton = createInfoButton("bi bi-info-lg", "btn btn-primary btn-sm", "button", "collapse", description.split(), "false", "extraInfo")
+        const $infoButton = createInfoButton("bi bi-info-lg", "btn btn-primary btn-sm", "button", "collapse", descriptionId, "false", "extraInfo")
         const $buttonsContainer = $("<div></div>").addClass("d-flex column-gap-2")
         $buttonsContainer.append($editButton, $deleteButton, $infoButton)
         const $inputAndDescriptionContainer = $("<div></div>").addClass("d-flex hstack gap-3 align-items-center inputAndDescription")
