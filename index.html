@@ -20,6 +20,12 @@
     <!-- Container principal -->
     <div class="container w-50 mt-5">
         <h1 class="text-center">Tarefas</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Pesquisar..." id="searchInput">
+            <i class="bi bi-search input-group-text"></i>
+        </div>
+        <button id="toggleCompletedButton" class="btn btn-light align-self-md-end mb-3" data-showing-completed="true"><i class="bi bi-eye-slash"></i> Esconder tarefas
+            concluídas</button>
         <!-- Coluna de agrupamento de tarefas -->
         <div class="task-column" id="todo">
             <!-- Itens irão aqui -->

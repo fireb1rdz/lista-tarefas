@@ -1,10 +1,22 @@
 $(document).ready(() => {
     // Selecionar os elementos
     const $form = $("#addTaskForm")
+    const $searchInput = $("#searchInput")
     const $descriptionInput = $("#descriptionInput")
     const $expireDateInput = $("#expireDateInput")
     const $detailedDescriptionInput = $("#detailedDescriptionInput")
     const $modal = new bootstrap.Modal("#addTaskModal")
+
+    const filterTasks = () => {
+        const searchTerm = $searchInput.val().toLowerCase(); // Obtem o valor do input e converte para minúsculo
+
+        const $tasks = $(".item")
+        $.each($tasks, (_, task) => { // Itera sobre cada elemento do DOM que tenha a classe .item, o callback recebe _ pois não tem index e recebe task que é o elemento do DOM
+            const $task = $(task); // Transforma o elemento do DOM para elemento do jQuery (habilita o .find())
+            const description = $task.find("span:not(.d-flex)")
+        })
+    }
+
     const createIconButton = (iconClass, btnClasses, clickHandler) => {
         const $button = $("<button></button>").addClass(btnClasses)
         const $icon = $("<i></i>").addClass(iconClass)
