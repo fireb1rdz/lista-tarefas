@@ -2,6 +2,7 @@ $(document).ready(() => {
     // Selecionar os elementos
     const $form = $("#addTaskForm")
     const $searchInput = $("#searchInput")
+    const $toggleCompletedButton = $("#toggleCompletedButton")
     const $descriptionInput = $("#descriptionInput")
     const $expireDateInput = $("#expireDateInput")
     const $detailedDescriptionInput = $("#detailedDescriptionInput")
@@ -30,8 +31,8 @@ $(document).ready(() => {
         $button.click(clickHandler)
         return $button
     }
-    const createSuccessButton = (sucessClass, type, value, clickHandler) => {
-        $sucess = $(`<button type="${type}" value="${value}"></button>`).addClass(sucessClass)
+    const createSuccessButton = (sucessClass, type, clickHandler) => {
+        $sucess = $(`<button type="${type}"></button>`).addClass(sucessClass)
         $sucess.text("Concluir")
         $sucess.click(clickHandler)
         return $sucess
@@ -64,7 +65,7 @@ $(document).ready(() => {
         // Variável contendo a informação de click no botão de conclusão
         let clicked = false
         expireDateFormated($expireDateInput.val())
-        const $sucessButton = createSuccessButton("btn btn-primary btn-sm", "button", "done", () => {
+        const $sucessButton = createSuccessButton("btn btn-primary btn-sm", "button", () => {
                 // Verifica se o botão de Concluir já foi clickado, se não foi, remove a data de expiração e adiciona a data de conclusão
             if (clicked == false) {
                 let today = new Date().toLocaleDateString()
@@ -88,6 +89,7 @@ $(document).ready(() => {
         })
         const $deleteButton = createIconButton("bi bi-x", "btn btn-danger btn-sm", () => {
             $newTask.remove()
+            $newTaskInfo.remove()
         })
 
         const $infoButton = createInfoButton("bi bi-info-lg", "btn btn-primary btn-sm", "button", "collapse", descriptionId, "false", "extraInfo")
@@ -114,6 +116,22 @@ $(document).ready(() => {
         } else {
             $form.addClass("was-validated")
         }
+    })
+
+    // Alternância de exibição de tarefas concluídas
+    showingCompleted = false
+    $toggleCompletedButton.on("click", () => {
+
+        showingCompleted = !showingCompleted
+
+        if (showingCompleted) {
+            $(".btn-success").closest(".item").hide()
+            $toggleCompletedButton.html('<i class="bi bi-eye"></i> Mostrar tarefas concluídas')
+        } else {
+            $(".btn-success").closest(".item").show()
+            $toggleCompletedButton.html('<i class="bi bi-eye-slash"></i> Esconder tarefas concluídas')
+        }
+        
     })
 
     // Evento de entrada de teclado para filtrar conforme usuário digita
