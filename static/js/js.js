@@ -13,7 +13,13 @@ $(document).ready(() => {
         const $tasks = $(".item")
         $.each($tasks, (_, task) => { // Itera sobre cada elemento do DOM que tenha a classe .item, o callback recebe _ pois não tem index e recebe task que é o elemento do DOM
             const $task = $(task); // Transforma o elemento do DOM para elemento do jQuery (habilita o .find())
-            const description = $task.find("span:not(.d-flex)")
+            const description = $task.find("span:not(.d-flex)").text().toLowerCase() // Obtém o valor da descrição da tarefa
+
+            if (!description.includes(searchTerm)) {
+                $task.hide()
+            } else {
+                $task.show()
+            }
         })
     }
 
@@ -109,5 +115,8 @@ $(document).ready(() => {
             $form.addClass("was-validated")
         }
     })
+
+    // Evento de entrada de teclado para filtrar conforme usuário digita
+    $searchInput.on("keyup", filterTasks)
     
 })
